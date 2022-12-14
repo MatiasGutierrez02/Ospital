@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Paciente>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body {
+        overflow: hidden;
+    }
+
+    .main-container {
+    }
+
+    .search-patient-title {
+        width: max-content;
+        height: 55px;
+        margin: 100px auto 0;
+        font-size: 28px;
+        background-color: #00c4cc;
+        border-radius: 30px;
+        padding: 0px 65px;
+        display: flex;
+        align-items: center;
+    }
+
+    .table-container {
+        border-radius: 3px;
+        background-color: #fff;
+        border-collapse: collapse;
+        display: table;
+        margin: 100px auto;
+        width: 35%;
+        display: block;
+        overflow-y: auto;
+        max-height: 765px;
+    }
+
+    .example {
+        color: #000000;
+        background-color: #00c4cc;
+        position: sticky;
+        top: 0;
+        padding: 10px 99px 10px 10px;
+    }
+
+    .data-container {
+        font-size: 24px;
+    }
+
+        .data-container:nth-child(odd) {
+            background-color: #cef3f5;
+        }
+
+    .info {
+        font-size: 19px;
+        padding: 15px 0px 5px 10px;
+    }
+
+    .item-logo {
+        height: 20px;
+        padding-right: 33px;
+    }
+</style>
+
+<h1 class="search-patient-title">
+    Historial de Pacientes
+</h1>
+
+
+
+<div class="main-container">
+    <table class="table-container">
+
+        <thead>
+        <th class="example">
+            <div>
+                <span role="columnheader">Nombre y Apellido</span>
+            </div>
+        </th>
+
+        <th class="example">
+            <div>
+                <span role="columnheader">Telefono</span>
+            </div>
+        </th>
+
+        <th class="example">
+            <div>
+                <span role="columnheader">Obra Social</span>
+            </div>
+        </th>
+
+        <th class="example">
+            <div>
+                <span role="columnheader">Fecha última consulta</span>
+            </div>
+        </th>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr accesskey="@item.Id" class="data-container">
+                    <td role="gridcell" class="info">
+                        <span>
+                            @item.Nombre @item.Apellido
+                        </span>
+                    </td>
+                    <td role="gridcell" class="info">
+                        <span>
+                            @item.Telefono
+                        </span>
+                    </td>
+                    <td role="gridcell" class="info">
+                        <span>
+                            @item.ObraSocial
+                        </span>
+                    </td>
+                    <td role="gridcell" class="info">
+                        <span>
+                            @item.UltimaConsulta.ToShortDateString()
+                        </span>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

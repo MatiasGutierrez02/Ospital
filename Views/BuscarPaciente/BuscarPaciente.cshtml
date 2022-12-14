@@ -1,0 +1,311 @@
+﻿@model Paciente
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<style>
+    .input-dni {
+        border-radius: 5px;
+        border: 1px solid #00c4cc;
+        width: 435px;
+        height: 35px;
+        outline: none;
+    }
+
+    .search-button {
+        border: none;
+        background-color: #00c4cc;
+        border-radius: 5px;
+        position: absolute;
+        right: 946px;
+        height: 35px;
+        width: 95px;
+        color: #FFFFFF;
+    }
+
+        .search-button:hover {
+            background-color: #008b91;
+        }
+
+    .first-row {
+        display: grid;
+        grid-template-columns: 399px 399px 399px;
+        grid-gap: 10px;
+        padding-bottom: 10px;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .columns-container {
+        display: flex;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .first-column {
+        padding-right: 30px;
+    }
+
+    .mail-field {
+        display: grid;
+        padding-right: 10px;
+    }
+
+    .date-of-admission {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 0px 10px 0 0;
+        grid-gap: 10px;
+    }
+
+    .obra-social {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 0px 10px 0 0;
+        grid-gap: 10px;
+    }
+
+    .second-column {
+        display: grid
+    }
+
+    .number-field {
+        display: grid;
+        grid-template-columns: 100px auto;
+        grid-gap: 10px;
+    }
+
+    .last-consultation {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 10px;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .direction {
+        display: grid;
+        grid-template-columns: auto 189px;
+        grid-gap: 10px;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .search-patient-title {
+        width: max-content;
+        height: 55px;
+        margin: 100px auto 0;
+        font-size: 28px;
+        background-color: #00c4cc;
+        border-radius: 30px;
+        padding: 0px 65px;
+        display: flex;
+        align-items: center;
+    }
+
+    .searchbar-container {
+        display: flex;
+        justify-content: center;
+        margin: 35px 0;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .text {
+        margin: 0 0 16px 0;
+        padding-top: 20px;
+    }
+
+    .add-to-data, .go-to-home {
+        display: flex;
+        border-radius: 10px;
+        background-color: transparent;
+        font-weight: 700;
+        width: 150px;
+        height: 60px;
+        margin-top: 20px;
+        border: 3px solid #00c4cc;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        color: #000000;
+    }
+
+
+        .add-to-data:hover, .go-to-home:hover {
+            background-color: #00c4cc;
+            color: #FFFFFF;
+        }
+
+    .go-home-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
+<h1 class="search-patient-title">
+    Buscar Paciente
+</h1>
+
+
+<div class="searchbar-container">
+    <input type="text" name="Dni" placeholder="Dni" class="input-dni" id="input-dni" value="@ViewBag.Dni"/>
+    <button type="submit" class="search-button" id="search-btn">Search</button>
+</div>
+
+<div class="first-row">
+    <div>
+        <p>Nombre</p>
+        <input type="text" placeholder="Nombre" class="input" id="name-input" name="Nombre" value="@ViewBag.Nombre" />
+    </div>
+    <div>
+        <p>Apellido</p>
+        <input type="text" placeholder="Apellido" class="input" id="apellido-input" name="Apellido" value="@ViewBag.Apellido" />
+    </div>
+    <div>
+        <p>Sexo</p>
+        <input type="text" placeholder="Sexo" class="input" id="sexo-input" name="Sexo" value="@ViewBag.Sexo" />
+    </div>
+</div>
+
+<div class="columns-container">
+    <div class="first-column">
+        <div class="mail-field">
+            <p class="text">Email</p>
+            <input type="email" placeholder="Mail" class="input" id="email-input" name="Email" value="@ViewBag.Email" />
+        </div>
+
+        <p class="text">Fecha de admisión</p>
+        <div class="date-of-admission">
+            <input type="text" placeholder="Día" class="input" id="diaAdm-input" name="Dia" value="@ViewBag.Dia" />
+            <input type="text" placeholder="Mes" class="input" id="mesAdm-input" name="Mes" value="@ViewBag.Mes" />
+            <input type="text" placeholder="Año" class="input" id="anioAdm-input" name="Anio" value="@ViewBag.Anio" />
+
+        </div>
+
+        <p class="text">Obra Social</p>
+        <div class="obra-social">
+            <input type="text" placeholder="Obra Social" class="input" id="os-input" name="ObraSocial" value="@ViewBag.ObraSocial" />
+            <input type="number" placeholder="Número Afiliado" class="input" id="numeroOs-input" name="NumeroAfiliado" value="@ViewBag.NumeroAfiliado" />
+        </div>
+
+
+        <a class="go-to-home" href="@Url.Action("Index", "Home")">
+            Volver al menu
+        </a>
+    </div>
+
+    <div class="second-column">
+        <p class="text">Número</p>
+        <div class="number-field">
+            <input type="number" placeholder="Código" class="input" id="codigo-input" name="Codigo" value="@ViewBag.Codigo" />
+            <input type="number" placeholder="Teléfono" class="input" id="numero-input" name="NumeroTelefono" value="@ViewBag.NumeroTelefono" />
+        </div>
+
+        <p class="text">Fecha Actual</p>
+        <div class="last-consultation">
+            <input disabled type="text" placeholder="Día" class="input" id="ultConsDia-input" name="DiaUltCons" value="@DateTime.Today.Day" />
+            <input disabled type="text" placeholder="Mes" class="input" id="ultConsMes-input" name="MesUltCons" value="@DateTime.Today.Month" />
+            <input disabled type="text" placeholder="Año" class="input" id="ultConsAnio-input" name="AnioUltCons" value="@DateTime.Today.Year" />
+        </div>
+
+        <p class="text">Dirección</p>
+        <div class="direction">
+            <input type="text" placeholder="Dirección" class="input" id="direccion-input" name="Direccion" value="@ViewBag.Direccion" />
+            <input type="text" placeholder="Localidad" class="input" id="localidad-input" name="Localidad" value="@ViewBag.Localidad" />
+        </div>
+
+        <div class="go-home-container">
+            <button class="add-to-data" type="submit" id="agregarConsulta-btn">
+                Agregar a Consulta
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#agregarConsulta-btn").click(function () {
+           agregarPacienteBD();
+        });
+
+
+        $("#search-btn").click(function () {
+            buscarPacienteBD();
+        });
+
+        function buscarPacienteBD() {
+            var id = $("#input-dni").val();
+            $.post('/BuscarPaciente/BuscarPacienteBD', { Dni: id },
+                function (response) {
+
+                    if(response != undefined){
+                        let fechaRegistro = response.fechaRegistro.split("-");
+                        $("#name-input").val(response.nombre);
+                        $("#apellido-input").val(response.apellido);
+                        $("#sexo-input").val(response.sexo);
+                        $("#email-input").val(response.mail);
+                        $("#diaAdm-input").val(fechaRegistro[2].slice(0, 2));
+                        $("#mesAdm-input").val(fechaRegistro[1]);
+                        $("#anioAdm-input").val(fechaRegistro[0]);
+                        $("#os-input").val(response.obraSocial);
+                        $("#numeroOs-input").val(response.numeroAfiliadoOS);
+                        $("#codigo-input").val(response.codigoTelefono);
+                        $("#numero-input").val(response.telefono);
+                        $("#direccion-input").val(response.direccion);
+                        $("#localidad-input").val(response.localidad);
+
+                    }else {
+                        $("#name-input").val("");
+                        $("#apellido-input").val("");
+                        $("#sexo-input").val("");
+                        $("#email-input").val("");
+                        $("#diaAdm-input").val("");
+                        $("#mesAdm-input").val("");
+                        $("#anioAdm-input").val("");
+                        $("#os-input").val("");
+                        $("#numeroOs-input").val("");
+                        $("#codigo-input").val("");
+                        $("#numero-input").val("");
+                        $("#direccion-input").val("");
+                        $("#localidad-input").val("");
+
+                    }
+                }).fail(function () {
+                    console.log("error");
+                });
+        }
+
+        function agregarPacienteBD() {
+            var FechaCompleta = $("#anioAdm-input").val()  + "/" + $("#mesAdm-input").val() + "/" + $("#diaAdm-input").val();
+            var FechaUltimaConsulta = $("#ultConsAnio-input").val() + "/" + $("#ultConsMes-input").val() + "/" + $("#ultConsDia-input").val();
+            console.log(FechaUltimaConsulta)
+            $.post('/BuscarPaciente/AgregarPacienteAConsulta', { 
+                Dni: $("#input-dni").val(),
+                Nombre: $("#name-input").val(),
+                Apellido: $("#apellido-input").val(),
+                Sexo:$("#sexo-input").val(),
+                Mail:$("#email-input").val(),
+                CodigoTelefono:$("#codigo-input").val(),
+                Telefono:$("#numero-input").val(),
+                FechaRegistro: FechaCompleta,
+                UltimaConsulta:FechaUltimaConsulta,
+                ObraSocial:$("#os-input").val(),
+                NumeroAfiliadoOS:$("#numeroOs-input").val(),
+                Direccion:$("#direccion-input").val(),
+                Localidad:$("#localidad-input").val()
+            },
+                function (response) {
+
+                }).fail(function () {
+                    console.log("error");
+            });
+        }
+
+
+        
+    });
+</script>
+

@@ -1,0 +1,224 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    .input-dni {
+        border-radius: 5px;
+        border: 1px solid #00c4cc;
+        width: 435px;
+        height: 35px;
+        outline: none;
+    }
+
+    .search-button {
+        border: none;
+        background-color: #00c4cc;
+        border-radius: 5px;
+        position: absolute;
+        right: 946px;
+        height: 35px;
+        width: 95px;
+        color: #FFFFFF;
+    }
+
+        .search-button:hover {
+            background-color: #008b91;
+        }
+
+    .first-row {
+        display: grid;
+        grid-template-columns: 399px 399px 399px;
+        grid-gap: 10px;
+        padding-bottom: 10px;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .columns-container {
+        display: flex;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    .first-column {
+        padding-right: 30px;
+    }
+
+    .mail-field {
+        display: grid;
+        padding-right: 10px;
+    }
+
+    .date-of-admission {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 0px 10px 0 0;
+        grid-gap: 10px;
+    }
+
+    .obra-social {
+        display: grid;
+        grid-template-columns: auto auto;
+        padding: 0px 10px 0 0;
+        grid-gap: 10px;
+    }
+
+    .second-column {
+        display: grid
+    }
+
+    .number-field {
+        display: grid;
+        grid-template-columns: 100px auto;
+        grid-gap: 10px;
+    }
+
+    .last-consultation {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 10px;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .direction {
+        display: grid;
+        grid-template-columns: auto 189px;
+        grid-gap: 10px;
+        padding: 0px 0px 0px 0px;
+    }
+
+    .search-patient-title {
+        width: max-content;
+        height: 55px;
+        margin: 100px auto 0;
+        font-size: 28px;
+        background-color: #00c4cc;
+        border-radius: 30px;
+        padding: 0px 65px;
+        display: flex;
+        align-items: center;
+    }
+
+    .searchbar-container {
+        display: flex;
+        justify-content: center;
+        margin: 35px 0;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .text {
+        margin: 0 0 16px 0;
+        padding-top: 20px;
+    }
+
+    .add-to-data, .go-to-home {
+        display: flex;
+        border-radius: 10px;
+        background-color: transparent;
+        font-weight: 700;
+        width: 150px;
+        height: 60px;
+        margin-top: 20px;
+        border: 3px solid #00c4cc;
+        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        color: #000000;
+    }
+
+
+        .add-to-data:hover, .go-to-home:hover {
+            background-color: #00c4cc;
+            color: #FFFFFF;
+        }
+
+    .go-home-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+</style>
+
+<h1 class="search-patient-title">
+    Editar Paciente
+</h1>
+
+<div class="searchbar-container">
+    <input type="number" placeholder="DNI" class="input-dni"/>
+</div>
+
+
+<div class="first-row">
+    <div>
+        <p>Nombre</p>
+        <input type="text" placeholder="Nombre" class="input"/>
+    </div>
+    <div>
+        <p>Apellido</p>
+        <input type="text" placeholder="Apellido" class="input"/>
+    </div>
+    <div>
+        <p>Sexo</p>
+        <input type="text" placeholder="Sexo" class="input"/>
+    </div>
+</div>
+
+<div class="columns-container">
+    <div class="first-column">
+        <div class="mail-field">
+            <p class="text">Email</p>
+            <input type="email" placeholder="Mail" class="input"  />
+        </div>
+
+        <p class="text">Fecha de admisión</p>
+        <div class="date-of-admission">      
+            <input type="text" placeholder="Día" class="input"  />
+            <input type="text" placeholder="Mes" class="input"  />
+            <input type="text" placeholder="Año" class="input"  />
+
+        </div>
+
+        <p class="text">Obra Social</p>
+        <div class="obra-social">
+            <input type="text" placeholder="Obra Social" class="input"  />
+            <input type="number" placeholder="Número Afiliado" class="input"  />
+        </div>
+
+        
+        <a class="go-to-home" href="@Url.Action("PacientesActivos", "PacientesActivos")">
+            Volver a Pacientes Activos
+        </a>
+    </div>
+
+    <div class="second-column">
+        <p class ="text">Número</p>
+        <div class="number-field">
+            <input type="number" placeholder="Código" class="input"  />
+            <input type="number" placeholder="Teléfono" class="input" />
+        </div>
+
+        <p class="text">Última consulta</p>
+        <div class="last-consultation">  
+            <input type="text" placeholder="Día" class="input"  />
+            <input type="text" placeholder="Mes" class="input"  />
+            <input type="text" placeholder="Año" class="input"  />
+        </div>
+
+        <p class="text">Dirección</p>
+        <div class="direction">
+            <input type="text" placeholder="Dirección" class="input"  />
+            <input type="text" placeholder="Localidad" class="input"  />
+        </div>
+
+        <div class="go-home-container">
+            <button class="add-to-data">
+                Confirmar edición
+            </button>
+        </div>
+
+
+    </div>
+</div>
+

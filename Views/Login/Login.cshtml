@@ -1,0 +1,73 @@
+﻿@model Login
+@{
+    ViewData["Title"] = "Login";
+}
+<style>
+    .loginContainer{
+        display: flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #5ce1e6;
+    }
+    .login{
+        display:flex;
+        flex-direction:column;
+        justify-content: center;
+        align-items: center;
+        padding: 25px 10px 10px;
+        border: solid 1px grey;
+        height: 320px;
+        width: 400px;
+        background-color: white;
+        border-radius: 20px;
+        border: 1px solid #5ce1e6;
+    }
+
+    .inputContainer{
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        align-items: center;
+    }
+
+    input{
+        margin:10px;
+        border-radius: 8px;
+        width: 250px;
+        border: 1px solid grey;
+        text-align:center;
+        z-index: 1;
+    }
+    .loginButton{
+        border-radius: 8px;
+        margin-top: 15px;
+        background-color: #5ce1e6;
+        border: 1px solid #5ce1e6;
+        color: white;
+    }
+    .btn {
+      width:250px;
+      padding:5px;
+    }
+    .imagen{
+        height: 100px;
+        width: 250px;
+    }
+    
+</style>
+   
+<div class="loginContainer">
+    <form asp-action="IniciarSesion">
+        <div class="login">
+            <img class="imagen" src="~/images/Logo1.png" alt="logo" />
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="inputContainer">
+                <input asp-for="Email" type="email" placeholder="Ingrese usuario" />
+                <input asp-for="Password" type="password" placeholder="Ingrese contraseña" />
+                <button type="submit" value="Login" class="loginButton btn" >ACCEDER</button>
+            </div>
+        </div>
+    </form>
+</div>

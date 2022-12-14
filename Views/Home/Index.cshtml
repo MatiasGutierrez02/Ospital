@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container-home home-container">
+    <button>
+        <a class ="btn" asp-controller="BuscarPaciente" asp-action="BuscarPaciente">Buscar Pacientes</a>
+    </button>
+
+    <button>
+        <a class ="btn" asp-controller="PacientesActivos" asp-action="PacientesActivos">Pacientes Activos</a>
+    </button>
+
+    <button >
+        <a class="btn" asp-controller="HistorialPacientes" asp-action="HistorialPacientes">Historial de Pacientes</a>
+    </button>
+</div>
+
+<style>
+
+    button{
+        border: none;
+        background: none;
+    }
+
+    .btn {
+        width: 350px;
+        height: 220px;
+        border-radius: 15px;
+        border: none;
+        background-color: #00c4cc;
+        font-size: 21px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn:hover {
+        transform: scale(1.07);
+        transition: transform 0.5s;
+    }
+
+    .container-home {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 20vh;
+    }
+
+</style>

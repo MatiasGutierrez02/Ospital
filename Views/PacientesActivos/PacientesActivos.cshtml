@@ -1,0 +1,178 @@
+﻿@model IEnumerable<Paciente>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+
+<style>
+    .item-logo {
+        cursor: pointer;
+        height: 20px;
+        padding-right: 33px;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
+    .main-container {
+    }
+
+    .search-patient-title {
+        width: max-content;
+        height: 55px;
+        margin: 100px auto 0;
+        font-size: 28px;
+        background-color: #00c4cc;
+        border-radius: 30px;
+        padding: 0px 65px;
+        display: flex;
+        align-items: center;
+    }
+
+    .table-container {
+        border-radius: 3px;
+        background-color: #fff;
+        border-collapse: collapse;
+        display: table;
+        margin: 100px auto;
+        width: 35%;
+        display: block;
+        overflow-y: auto;
+        max-height: 765px;
+    }
+
+    .example {
+        color: #000000;
+        background-color: #00c4cc;
+        position: sticky;
+        top: 0;
+        padding: 10px 99px 10px 10px;
+    }
+
+    .data-container {
+        font-size: 24px;
+    }
+
+        .data-container:nth-child(odd) {
+            background-color: #cef3f5;
+        }
+
+    .info {
+        font-size: 19px;
+        padding: 15px 0px 5px 10px;
+    }
+
+</style>
+
+<h1 class="search-patient-title">
+    Pacientes Activos
+</h1>
+
+
+
+<div class="main-container">
+    <table class="table-container">
+
+        <thead>
+            
+            <th class="example">
+                <div>
+                    <span role="columnheader">Nombre y Apellido</span>
+                </div>
+            </th>
+
+            <th class="example">
+                <div>
+                    <span role="columnheader">Telefono</span>
+                </div>
+            </th>
+
+            <th class="example">
+                <div>
+                    <span role="columnheader">Obra Social</span>
+                </div>
+            </th>
+
+            <th class="example">
+                <div>
+                    <span role="columnheader">Id</span>
+                </div>
+            </th>
+            <th class="example">
+                <div>
+                <span role="columnheader">Acciones</span>
+                </div>
+            <th />
+        </thead>
+ 
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr accesskey="@item.Id" class="data-container">
+                    <td role="gridcell" class="info">
+                        <span>
+                            @item.Nombre @item.Apellido
+                        </span>
+                    </td>
+                    <td role="gridcell" class="info">
+                        <span>
+                            @item.Telefono
+                        </span>
+                    </td>
+                    <td role="gridcell" class="info">
+                        <span>
+                            @item.ObraSocial
+                        </span>
+                    </td>
+                    <td role="gridcell" class="info">
+                        <span id="id-paciente">
+                            @item.Id
+                        </span>
+                    </td>
+                    <td role="gridcell" class="info">
+                        <span>
+                            <img class="item-logo" src="~/images/check.png" alt="Enviar a Pacientes Activos" id="check-btn" />
+                            <a href="@Url.Action("EditarPaciente", "EditarPaciente")">
+                                <img class="item-logo" src="~/images/editar.png" alt="Editar" />
+                            </a>
+                            <button id="eliminarConsulta-btn" type="submit" class="item">
+                                <img class="item-logo" src="~/images/borrar.png" alt="Borrar"  />
+                             </button>
+                          
+                        </span>
+                    </td>
+                </tr>
+                
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#eliminarConsulta-btn").click(function () {
+            eliminarPacienteDB();
+        });
+
+
+       
+
+        function eliminarPacienteDB() {
+            console.log("Entro");
+          
+            $.post('PacientesActivos/EliminarPacienteBD', { ID_Paciente: $("#id-paciente").text() },
+                function(response){
+                    console.log("Entro al response")
+                   
+            }).fail(function(){
+                  console.log("error");
+            });
+        }
+
+
+
+    });
+</script>

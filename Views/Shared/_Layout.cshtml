@@ -1,0 +1,109 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    string authenticated = HttpContextAccessor.HttpContext.Session.GetString("User");
+    string logOut = HttpContextAccessor.HttpContext.Session.GetString("LogOut");
+}
+<style>
+    .items-navbar{
+        padding: 20px 0px 20px 235px;
+        background-color: #00c4cc;
+    }
+     
+    .logo-image{
+        height: 170px;
+        position: absolute;
+        top: -42px;
+        left: -25px;
+    }
+    .nav-containerStyle{
+        justify-content: center;
+        margin-right: 110px;
+    }
+    .nav-item {
+        z-index: 1;
+        margin: 0 7px;
+    }
+
+    .container{
+        margin-left: 0;
+    }
+
+    .footer-text-Ospital {
+        margin: 12px 0 0 30px;
+    }
+    .cerrarSesion{
+        list-style: none;
+        margin-top:15px;
+
+    }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OSpital</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OSpital.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        @if ((authenticated != null && authenticated != "NotAuth") && (logOut != null && logOut != "true"))
+        {
+            <nav class="navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div>
+                    <a asp-controller="Home" asp-action="Index">
+                        <img class="logo-image" src="~/images/LogoOspital.svg" alt="logo"/>
+                    </a>
+                   
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between items-navbar">
+                        <ul class="nav-containerStyle navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="BuscarPaciente" asp-action="BuscarPaciente">Buscar Paciente</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="PacientesActivos" asp-action="PacientesActivos">Pacientes Activos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="HistorialPacientes" asp-action="HistorialPacientes">Historial de Paciente</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="cerrarSesion nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="cerrarSesion">Cerrar sesion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+    </header>
+    <div >
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    @if ((authenticated != null && authenticated != "NotAuth") && (logOut != null && logOut != "true"))
+    {
+        <footer class="border-top footer text-muted">
+            <div>
+                <p class="footer-text-Ospital">
+                    &copy; 2022 - OSpital - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </p>
+        </div>
+    </footer>
+    }
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
