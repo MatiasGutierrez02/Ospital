@@ -1,0 +1,7 @@
+﻿@media screen and (max-width: 800px){
+    .home-container{
+        display:flex;
+
+        flex-direction: row;
+    }
+}
